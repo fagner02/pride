@@ -2,18 +2,6 @@
   font-family: fifteen;
   src: url('Fifteen-Regular.ttf');
 } 
-@font-face {
-  font-family: draftmono;
-  src: url('DraftingMono-Regular.ttf');
-}
-@font-face {
-  font-family: basically;
-  src: url('BasicallyAMono-Regular.ttf');
-}
-@font-face {
-  font-family: awoof;
-  src: url('Awoof-Mono-Regular.ttf');
-}
 *:not(text){
   font-family: fifteen;
   color: hsl(0 0% 20%);
