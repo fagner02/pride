@@ -1,30 +1,40 @@
 @font-face {
   font-family: fifteen;
-  src: url('Fifteen-Regular.ttf');
-} 
-*:not(text){
+  src: url("Fifteen-Regular.ttf");
+}
+
+*:not(text) {
   font-family: fifteen;
   color: hsl(0 0% 20%);
 }
+
 :root {
   --light: 45%;
   --sat: 80%;
-  --rainbow: linear-gradient(-45deg,
-    hsl(0, var(--sat), var(--light)), 
-    hsl(50, var(--sat), var(--light)), 
-    hsl(80, var(--sat), var(--light)), 
-    hsl(150, var(--sat), var(--light)), 
+  --rainbow: linear-gradient(
+    -45deg,
+    hsl(0, var(--sat), var(--light)),
+    hsl(50, var(--sat), var(--light)),
+    hsl(80, var(--sat), var(--light)),
+    hsl(150, var(--sat), var(--light)),
     hsl(200, var(--sat), var(--light)),
     hsl(260, var(--sat), var(--light)),
-    hsl(300, var(--sat), var(--light)));
+    hsl(300, var(--sat), var(--light))
+  );
 }
-html, body {
+
+html,
+body {
   margin: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   overflow-x: hidden;
   overflow-y: scroll;
 }
+
 * {
-  font-family: ;
+  font-family: fifteen;
 }
 
 .copy {
@@ -37,42 +47,55 @@ html, body {
 }
 
 .box {
-  position: absolute;
-  //overflow: visible;
+  grid-area: 1 / 1 / 1 / 1;
   background: none;
   width: 100%;
   height: 100%;
   align-items: start;
   z-index: -1;
-  justify-content: center;
+  justify-content: start;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.gridBox {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  align-items: flex-start;
+}
+
+.contentBox {
+  grid-area: 1 / 1 / 1 / 1;
 }
 #wave {
   transform: translateX(0px);
   animation: waves 3s infinite linear;
 }
-.wave {
-  position: absolute;
+.fstWave {
+  grid-area: 1 / 1 / 1 / 1;
   border: 1px solid black;
   background-image: var(--rainbow);
-  background-position: -400px 0px;
   clip-path: url(#wave);
-  transform: rotate(-76deg) scale(0.6);
-  left: -1506px;
-  top: -100px;
+  transform: rotateX(180deg) rotateZ(48deg) scale(0.9) translateY(-400px);
   width: 2800px;
   height: 400px;
   z-index: -1;
-  transform-origin: center;
-  transition: left 1s;
+  transform-origin: top right;
+  transition: right 1s, transform 1s;
+  position: fixed;
+  right: -1500px;
+  bottom: 1170px;
   animation: bg 10s infinite alternate ease;
 }
-.wave1 {
-  left: -307px;
-  top: 1200px;
-  transform: rotate(104deg) scale(0.6);
-  background-position: 0px 0px;
+.sndWave {
+  grid-area: 2 / 1 / 2 / 1;
+  position: initial;
+  transform-origin: bottom left;
+  transform: rotate(286deg) scale(0.9) translateY(-1000px);
 }
-@keyframes waves{
+@keyframes waves {
   0% {
     transform: translateX(0px);
   }
@@ -101,108 +124,98 @@ div {
 }
 p {
   width: 80%;
-  font-size: 40px;
+  font-size: 25px;
 }
 .button {
   margin-top: 50px;
-  font-size: 40px;
-  border-radius: 20px;
+  font-size: 20px;
+  border-radius: 15px;
   background: hsl(0 0% 90%);
   box-shadow: none;
-  padding: 10px 20px;
+  padding: 5px 10px;
   border: none;
   outline: none;
 }
 .secButton {
   font-size: 0px;
   flex-shrink: 0;
-  border-radius: 20px;
+  border-radius: 15px;
   background: hsl(0 0% 85%);
   color: hsl(0 0% 100%);
-  /*box-shadow: 0px 0px 10px hsl(0 0% 0% / 0.2);*/
-  padding: 10px 20px;
-  /*margin: 0 20px;*/
+  padding: 0px;
   border: none;
   outline: none;
   visibility: hidden;
+  transition: padding 0.3s;
 }
+
 .scrollBox {
   overflow: scroll;
   justify-content: start;
   align-items: start;
   width: 100%;
-  scroll-width: none;
 }
+
 .scrollBox::-webkit-scrollbar {
   display: none;
 }
-.secButtons {
-  margin: 0 0px;
+
+.scrollableChildren {
+  margin: 0px 25px;
   flex-direction: row;
   overflow: visible;
-  height: 80px;
   width: 100%;
   transition: margin 1s;
-  gap: 40px;
+  gap: 20px;
 }
+
 .container {
   position: relative;
-  top: calc(-30vh - 80px);
   background: hsl(0 0% 90%);
   border-radius: 30px;
   overflow: hidden;
   width: 80%;
-  height: 30vh;
   display: flex;
-  padding: 40px 0;
+  padding: 20px 0px;
   font-size: 30px;
   justify-content: start;
   transition: top 1s;
+  top: -100vh;
 }
-section {
-  background: hsl(0 0% 90%);
-  border-radius: 30px;
-  width: 0%;
-  height: 30vh;
-  display: flex;
-  padding: 40px 0;
-  font-size: 30px;
-}
+
 .open {
-  font-size: 40px;
+  font-size: 20px;
+  padding: 5px 10px;
 }
+
 :root {
-  --initial: 0px;
+  --initial-font-size: 0px;
+  --initial-padding-h: 0px;
+  --initial-padding-v: 0px;
+  --font-size: 20px;
+  --padding-h: 10px;
+  --padding-v: 5px;
 }
+
 @keyframes bubble {
   0% {
-    /*width: 0%;
-    height: 0vh;
-    padding: 40px 0;*/
-    font-size: var(--initial);
+    font-size: var(--initial-font-size);
+    padding: var(--initial-padding-v) var(--initial-padding-h);
   }
   30% {
-    /*padding: 40px;
-    width: 90%;
-    height: 33.75vh;*/
-    font-size: 45px;
+    font-size: calc(var(--font-size) * 1.2);
+    padding: calc(var(--padding-v) * 1.2) calc(var(--padding-h) * 1.2);
   }
   50% {
-    /*padding: 40px;
-    width: 75%;
-    height: 28.125vh;*/
-    font-size: 37.5px;
+    font-size: calc(var(--font-size) * 0.9);
+    padding: calc(var(--padding-v) * 0.9) calc(var(--padding-v) * 0.9);
   }
   75% {
-    /*padding: 40px;
-    width: 85%;
-    height: 31.875vh;*/
-    font-size: 42.5px;
+    font-size: calc(var(--font-size) * 1.1);
+    padding: calc(var(--padding-v) * 1.1) calc(var(--padding-h) * 1.1);
   }
   100% {
-    /*padding: 40px;
-    width: 80%;
-    height: 30vh;*/
-    font-size: 40px;
+    font-size: var(--font-size);
+    padding: var(--padding-v) var(--padding-h);
   }
-} 
+}
