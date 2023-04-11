@@ -3,6 +3,22 @@ const container = document.querySelector(".container");
 const buttonBox = document.querySelector(".scrollableChildren");
 const fstWave = document.querySelector(".fstWave");
 const sndWave = document.querySelector(".sndWave");
+
+let scale = 1;
+let translateX = 200;
+let sizeY = 0;
+let sizeX = window.innerWidth - translateX;
+sndWave.style.translate = sizeX + "px " + sizeY + "px";
+sndWave.style.scale = scale;
+sndWave.style.transformOrigin = translateX + "px " + 400 + "px";
+
+window.onresize = () => {
+  sizeY = 0;
+  sizeX = window.innerWidth - 1400;
+  sndWave.style.translate = sizeX + "px " + sizeY + "px";
+  sndWave.style.transformOrigin = "1400px 400px";
+};
+// console.log(, "fimmm");
 var opened = false;
 var colors = [
   "hsl(200 70% 50%)",
@@ -64,6 +80,7 @@ function updateValues(obj, animName) {
   obj.addEventListener("animationend", () => {
     obj.classList.add(animName);
     obj.style.animation = null;
+    obj.removeEventListener("animationend", () => {});
   });
 }
 
@@ -97,12 +114,11 @@ document.querySelector(".button").onclick = () => {
 };
 async function open() {
   await wait(1700);
-  fstWave.style.right = "-950px";
-  sndWave.style.transform =
-    "rotate(297deg) scale(0.9) translateY(-25px) translateX(-300px)";
+  fstWave.style.left = "0px";
+  sndWave.style.right = "0px";
 
   await wait(1000);
-  container.style.top = "0vh";
+  container.style.top = "0%";
 
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].style.visibility = "visible";
