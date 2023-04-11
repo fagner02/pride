@@ -11,16 +11,18 @@
   <body>
     <div class="gridBox">
       <div class="box">
-        <div class="fstWave"></div>
-        <div class="fstWave sndWave"></div>
+        <div class="wave fstWave"></div>
+        <div class="waveBox">
+          <div class="wave sndWave"></div>
+        </div>
       </div>
       <div class="contentBox">
         <div>
           <button class="button">celebrate</button>
         </div>
-        <svg style="max-height: 50vh" class="text" viewbox="0 0 220 80">
+        <svg class="text" viewbox="0 0 200 45">
           <symbol id="temp">
-            <text text-anchor="middle" x="50%" y="50%">with pride</text>
+            <text text-anchor="middle" x="50%" y="60%">with pride</text>
           </symbol>
           <g>
             <use href="#temp" class="copy"></use>
@@ -30,25 +32,6 @@
             <use href="#temp" class="copy"></use>
             <use href="#temp" class="copy"></use>
           </g>
-        </svg>
-        <div class="hideBox">
-          <div class="container">
-            <div class="scrollBox">
-              <div class="scrollableChildren">
-                <button class="secButton">Joy</button>
-                <button class="secButton">Love</button>
-                <button class="secButton">Respect</button>
-                <button class="secButton">Hope</button>
-              </div>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-              pharetra purus ac urna pharetra, sit amet maximus est mollis.
-              Duis.
-            </p>
-          </div>
-        </div>
-        <svg>
           <defs>
             <clippath id="wave">
               <path
@@ -58,11 +41,38 @@
        Q 1400 0, 1600 200
        Q 1800 400, 2000 200
        Q 2200 0, 2400 200
-       Q 2600 400, 2800 200 V 0 H 0 Z"
-              ></path>
+       Q 2600 400, 2800 200 V 0 H 0 Z"></path>
+            </clippath>
+            <clippath id="flipped-wave">
+              <path d="M 0 200 Q 200 400, 400 200 Q 600 0, 800 200 Q 1000 400,
+              1200 200 Q 1400 0, 1600 200 Q 1800 400, 2000 200 Q 2200 0, 2400
+              200 Q 2600 400, 2800 200 V 400 H 0 Z"
             </clippath>
           </defs>
         </svg>
+        <div class="hide-box">
+          <div class="container">
+            <div class="scrollableChildren">
+              <button class="secButton">Joy</button>
+              <button class="secButton">Love</button>
+              <button class="secButton">Respect</button>
+              <button class="secButton">Hope</button>
+            </div>
+            <div
+              style="
+                display: flex;
+                overflow: auto;
+                justify-content: center;
+                margin-top: 10px;
+              ">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+                pharetra purus ac urna pharetra, sit amet maximus est mollis.
+                Duis.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </body>
